@@ -1,5 +1,6 @@
 #include <iostream>
 #include <pthread.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -9,7 +10,8 @@ void *say_hello(void *args)
 {
 	int value = *(int *)(args);
 	cout << "hello multi_thread: args = " << value << endl;
-	return 0;
+	pthread_exit(NULL);
+	//return 0;
 }
 
 
@@ -27,6 +29,7 @@ int main(void)
 		if(ret != 0)
 		{
 			cout << "pthread_create error: error code=" << ret << endl;
+			exit(-1);
 		}
 	}
 	
